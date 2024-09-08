@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class SDORequest : MonoBehaviour
 {
-    private string url = "https://sdo23.1580.ru/mod/quiz/processattempt.php";
+    private string url = "https://sdo24.1580.ru/mod/quiz/processattempt.php";
 
     public string allAnswerHtml;
     public string qestion;

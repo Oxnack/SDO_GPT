@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Redirection : MonoBehaviour
 {
@@ -15,7 +18,22 @@ public class Redirection : MonoBehaviour
     public string sesskey;
     public string cookie;    //сдо
 
-    private void Start()
+    [SerializeField] private TMP_InputField _qNumInput, _cmidInput, _attemptInput, _sesskeyInput, _cookieInput, _indexInput;
+
+    public void SaveInput()
+    {
+        qNumber = _qNumInput.text;
+        cmid = _cmidInput.text;
+        attempt = _attemptInput.text;
+        sesskey = _sesskeyInput.text;
+        cookie = _cookieInput.text;
+        if (_indexInput.text != "")
+        {
+            index = Convert.ToInt32(_indexInput.text);
+        }
+    }
+
+    public void StartWork()
     {
         Application.targetFrameRate = 40;
         sDORequest = GetComponent<SDORequest>();
@@ -69,7 +87,7 @@ public class Redirection : MonoBehaviour
                 for (int i = 1; i < 5; i++)
                 {
                     sDORequest.parameters[qNumber + ":" + index.ToString() + "_:sequencecheck"] = (check + i).ToString();
-                    sDORequest.parameters["mdlscrollto"] = Random.Range(200, 1001).ToString();
+                    sDORequest.parameters["mdlscrollto"] = UnityEngine.Random.Range(200, 1001).ToString();
                     sDORequest.SendReqest();
                 }
                 yield return new WaitForSeconds(10);
